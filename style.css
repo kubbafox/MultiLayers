@@ -1,47 +1,65 @@
+@import url('http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900');
+
+*, *:before, *:after {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    vertical-align: baseline;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
 .evo_c_multiLayers_container {
+    font-family: Roboto;
+    font-weight: 300;
     margin: 30px;
     width: 50%;
     height: auto;
     display: block;
-    flex-direction: column;
 }
 
 .evo_c_multiLayers_container section {
-    transition: all 1s ease-in-out;
+    background: #FDFFFC;
+    height: auto;
+    border: solid 1px #808080;
+    color: #808080;
+    transition: all 0.8s ease-in-out;
 }
 
-.evo_c_multiLayers_container section {
-    z-index: -1;
+.evo_c_multiLayers_container section div {
+    padding: 10px 25px;
 }
 
-.evo_c_multiLayers_container section:nth-child(1) {
-    background: lightblue;
-    /*order: 1;*/
-    /*z-index: 1;*/
-    /*right: 0px;*/
-    /*top:0px;*/
+.evo_c_multiLayers_container section .evo_c_multiLayer_header {
+    margin: 5px 0px;
+    font-weight: 400;
+    font-size: 24px;
 }
 
-.evo_c_multiLayers_container section:nth-child(2) {
-    background: bisque;
-    /*order: 2;*/
-    /*z-index: 2;*/
-    /*left: 30px;*/
-    /*top:-550px;*/
+.evo_c_multiLayers_container section .evo_c_multiLayer_title {
+    font-weight: 400;
+    font-size: 20px;
+    margin: 5px 0px;
 }
 
-.evo_c_multiLayers_container section:nth-child(3) {
-    /*order: 3;*/
-    /*z-index: 3;*/
-    /*left: 60px;*/
-    /*top:-1100px;*/
+.evo_c_multiLayers_container section .evo_c_multiLayer_content {
+    font-weight: 300;
+    font-size: 16px;
 }
 
-.evo_c_multiLayers_container section:nth-child(4) {
-    /*order: 4;*/
-    /*z-index: 4;*/
-    /*left: 90px;*/
-    /*top:-1650px;*/
+.evo_c_multiLayers_container section .evo_c_multiLayer_bullet_point {
+    font-weight: 300;
+    font-size: 14px;
+    padding: 5px 35px;
+}
+
+.evo_c_multiLayers_container section div:last-child {
+    margin-bottom: 30px;
+}
+
+.evo_c_multiLayer_bold_text {
+    font-weight: 400;
 }
 
 .evo_c_multiLayers_layer {

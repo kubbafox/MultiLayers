@@ -16,9 +16,12 @@
         var tempLayers = document.getElementsByClassName('evo_js_multiLayers_layer');
         for (var i = 0; i < tempLayers.length; i++) {
             tempLayers[i].style.zIndex = i;
-            tempLayers[i].style.left = (i * 30).toString() + 'px';
-            tempLayers[i].style.top = (i * 20).toString() + 'px';
+            tempLayers[i].style.left = (i * 15).toString() + 'px';
+            tempLayers[i].style.top = (i * 45).toString() + 'px';
         }
+
+        tempLayers[tempLayers.length - 1].style.background = "#C3E2F1"
+        tempLayers[tempLayers.length - 1].style.color = "#53A0C7"
     }
 
 
@@ -29,7 +32,6 @@
 
         for (var i = 1; i < layerNumbers + 1; i++) {
             var topPosition = getLayerTopPosition(i);
-            var cssOrderValue = window.getComputedStyle(document.getElementById('evo_js_multiLayers_layer_' + i)).getPropertyValue('order');
             var cssZIndexOrderValue = window.getComputedStyle(document.getElementById('evo_js_multiLayers_layer_' + i)).getPropertyValue('z-index');
             var cssTopValue = window.getComputedStyle(document.getElementById('evo_js_multiLayers_layer_' + i)).getPropertyValue('top');
             var cssLeftValue = window.getComputedStyle(document.getElementById('evo_js_multiLayers_layer_' + i)).getPropertyValue('left');
@@ -78,8 +80,8 @@
         for (var i = 0; i < tempLayerPositions.length; i++) {
             var tempLayer = document.getElementById(tempLayerPositions[i].layerName);
             tempLayer.style.zIndex = i;
-            tempLayer.style.left = (i * 30).toString() + 'px';
-            tempLayer.style.top = (i * 20).toString() + 'px';
+            tempLayer.style.left = (i * 15).toString() + 'px';
+            tempLayer.style.top = (i * 45).toString() + 'px';
         }
     }
 
