@@ -26,24 +26,35 @@
     border-bottom: 0;
     border-right: 0;
     color: #808080;
-    transition: all 0.8s ease-in-out;
+    transition: left 0.6s linear, top 0.6s linear, background 0.1s linear, color 0.1s linear;
+}
+
+.evo_c_multiLayers_container section:hover,
+.evo_c_multiLayers_container:hover section:hover .evo_c_multiLayer_header{
+    border-color: #53A0C7;
+    color: #53A0C7;
+    transition: all 0.6s linear;
 }
 
 .evo_c_multiLayers_container section div {
     padding: 10px 25px;
+    transition: opacity 0.6s linear;
 }
 
 .evo_c_multiLayers_container section .evo_c_multiLayer_header {
     margin: 5px 0px;
-    font-weight: 400;
-    font-size: 24px;
+    font-weight: 300;
+    font-size: 16px;
 }
+
+
 
 .evo_c_multiLayers_container section .evo_c_multiLayer_title {
     font-weight: 400;
     font-size: 20px;
     margin: 5px 0px;
 }
+
 
 .evo_c_multiLayers_container section .evo_c_multiLayer_content {
     font-weight: 300;
@@ -56,7 +67,7 @@
     padding: 5px 35px;
 }
 
-.evo_c_multiLayers_container section div:last-child {
+.evo_c_multiLayers_container section div:nth-last-child(1) {
     margin-bottom: 30px;
 }
 
@@ -73,6 +84,5 @@
     border: 1px solid black;
 }
 
-.evo_c_multiLayers_layer {
 
-}
+/* Mobile Layout*/

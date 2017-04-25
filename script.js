@@ -10,6 +10,7 @@
     setInitialLayerCSSPropertyValue();
     createLayerMapping();
     createClickEventListener();
+    createScrollEventListener();
 
 
     function setInitialLayerCSSPropertyValue() {
@@ -30,7 +31,6 @@
             }
         }
 
-
         //Display & Highlight the Last Layer
         var theLastLayer = tempLayers[tempLayers.length - 1];
         theLastLayer.style.background = "#E7F6FE";
@@ -39,6 +39,9 @@
         theLastLayer.style.height = "auto";
 
         var tempChildNodes = theLastLayer.childNodes;
+        // Setup Header
+        tempChildNodes[1].style.fontWeight= "400";
+        tempChildNodes[1].style.fontSize= "24px";
 
         for (var j = 2; j < tempChildNodes.length; j++) {
             if (tempChildNodes[j].nodeName.toLowerCase() == 'div') {
@@ -61,7 +64,13 @@
             var cssTopValue = window.getComputedStyle(document.getElementById('evo_js_multiLayers_layer_' + i)).getPropertyValue('top');
             var cssLeftValue = window.getComputedStyle(document.getElementById('evo_js_multiLayers_layer_' + i)).getPropertyValue('left');
 
-            currentLayerPositionMapping = {'layerName': 'evo_js_multiLayers_layer_' + i, 'topPosition': topPosition, 'zIndex': cssZIndexOrderValue , 'top': cssTopValue , 'left': cssLeftValue}
+            currentLayerPositionMapping = {
+                'layerName': 'evo_js_multiLayers_layer_' + i,
+                'topPosition': topPosition,
+                'zIndex': cssZIndexOrderValue,
+                'top': cssTopValue,
+                'left': cssLeftValue
+            }
             currentLayerPositions.push(currentLayerPositionMapping);
         }
 
@@ -78,7 +87,7 @@
             }, false);
         }
     }
-    
+
     function shuffleLayers(e) {
         var tempLayerPositions = createLayerMapping();
         var clickedElement = (e.target.id).replace('_header', '');
@@ -91,7 +100,7 @@
                 break;
             }
         }
-        
+
         //Sort the tempLayerPositions array based on updated topPosition
 
         tempLayerPositions.sort(function (a, b) {
@@ -100,7 +109,7 @@
             return 0;
         });
 
-        //Update CCS PropertyValue & Shuffle Layers
+        //Reset CCS PropertyValue & Shuffle Layers
         for (var i = 0; i < tempLayerPositions.length; i++) {
             var tempLayer = document.getElementById(tempLayerPositions[i].layerName);
             tempLayer.style.zIndex = i;
@@ -114,6 +123,10 @@
             tempLayer.style.height = "480px";
 
             var tempChildNodes = tempLayer.childNodes;
+            // Reset Header
+            tempChildNodes[1].style.fontWeight= "300";
+            tempChildNodes[1].style.fontSize= "16px";
+
             for (var j = 2; j < tempChildNodes.length; j++) {
                 if (tempChildNodes[j].nodeName.toLowerCase() == 'div') {
                     tempChildNodes[j].style.opacity = 0;
@@ -121,8 +134,6 @@
                 }
             }
         }
-
-
 
         //Highlight the clicked layer
 
@@ -134,6 +145,11 @@
         clickedLayer.style.height = "auto";
 
         var tempChildNodes = clickedLayer.childNodes;
+
+        // Setup Header
+        tempChildNodes[1].style.fontWeight= "400";
+        tempChildNodes[1].style.fontSize= "24px";
+
         for (var j = 2; j < tempChildNodes.length; j++) {
             if (tempChildNodes[j].nodeName.toLowerCase() == 'div') {
                 tempChildNodes[j].style.opacity = 1;
@@ -142,9 +158,40 @@
         }
     }
 
+    function createScrollEventListener() {
+        window.addEventListener('scroll', function () {
+            var currentScrollTopPosition = checkCurrentScrollPosition();
+            var containerTopPosition = getContainerTopPosition();
+            var layerNumbers = getLayerNumbers();
+            
+            if (currentScrollTopPosition > containerTopPosition + layerNumbers * 38) {
+                setHeaderPositionToVertical();
+            } else {
+                setHeaderPositionToHorizontal();
+            }
+
+        }, false);
+    }
+
+    function setHeaderPositionToVertical() {
+
+    }
+
+    function setHeaderPositionToHorizontal() {
+
+    }
+
+
+    function checkCurrentScrollPosition() {
+        return document.body.scrollTop;
+    }
+
     function getLayerTopPosition(layerId) {
-        var tempLayerTop = document.getElementById('evo_js_multiLayers_layer_' + layerId).offsetTop;
-        return tempLayerTop;
+        return document.getElementById('evo_js_multiLayers_layer_' + layerId).offsetTop;
+    }
+
+    function getContainerTopPosition() {
+        return document.getElementById('evo_js_multiLayers_container').offsetTop;
     }
 
     function getLayerNumbers() {
