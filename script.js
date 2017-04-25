@@ -14,14 +14,39 @@
 
     function setInitialLayerCSSPropertyValue() {
         var tempLayers = document.getElementsByClassName('evo_js_multiLayers_layer');
+
+        //Setup CCS Property for All Layers
         for (var i = 0; i < tempLayers.length; i++) {
             tempLayers[i].style.zIndex = i;
             tempLayers[i].style.left = (i * 15).toString() + 'px';
             tempLayers[i].style.top = (i * 45).toString() + 'px';
+
+            var tempChildNodes = tempLayers[i].childNodes;
+            for (var j = 2; j < tempChildNodes.length; j++) {
+                if (tempChildNodes[j].nodeName.toLowerCase() == 'div') {
+                    tempChildNodes[j].style.opacity = 0;
+                    tempChildNodes[j].style.height = 0;
+                }
+            }
         }
 
-        tempLayers[tempLayers.length - 1].style.background = "#C3E2F1"
-        tempLayers[tempLayers.length - 1].style.color = "#53A0C7"
+
+        //Display & Highlight the Last Layer
+        var theLastLayer = tempLayers[tempLayers.length - 1];
+        theLastLayer.style.background = "#E7F6FE";
+        theLastLayer.style.color = "#53A0C7";
+        theLastLayer.style.border = "solid 1px #53A0C7";
+        theLastLayer.style.height = "auto";
+
+        var tempChildNodes = theLastLayer.childNodes;
+
+        for (var j = 2; j < tempChildNodes.length; j++) {
+            if (tempChildNodes[j].nodeName.toLowerCase() == 'div') {
+                tempChildNodes[j].style.opacity = 1;
+                tempChildNodes[j].style.height = 'auto';
+            }
+        }
+
     }
 
 
@@ -67,7 +92,7 @@
             }
         }
         
-        //Sort the tempLayerPositions Array based on updated topPosition
+        //Sort the tempLayerPositions array based on updated topPosition
 
         tempLayerPositions.sort(function (a, b) {
             if (a['topPosition'] > b['topPosition']) return 1;
@@ -76,12 +101,44 @@
         });
 
         //Update CCS PropertyValue & Shuffle Layers
-        // var tempLayers = document.getElementsByClassName('evo_js_multiLayers_layer');
         for (var i = 0; i < tempLayerPositions.length; i++) {
             var tempLayer = document.getElementById(tempLayerPositions[i].layerName);
             tempLayer.style.zIndex = i;
             tempLayer.style.left = (i * 15).toString() + 'px';
             tempLayer.style.top = (i * 45).toString() + 'px';
+            tempLayer.style.background = "#FDFFFC";
+            tempLayer.style.color = "#808080";
+            tempLayer.style.borderColor = "#808080";
+            tempLayer.style.borderBottom = "0";
+            tempLayer.style.borderRight = "0";
+            tempLayer.style.height = "480px";
+
+            var tempChildNodes = tempLayer.childNodes;
+            for (var j = 2; j < tempChildNodes.length; j++) {
+                if (tempChildNodes[j].nodeName.toLowerCase() == 'div') {
+                    tempChildNodes[j].style.opacity = 0;
+                    tempChildNodes[j].style.height = 0;
+                }
+            }
+        }
+
+
+
+        //Highlight the clicked layer
+
+        var clickedLayer = document.getElementById(tempLayerPositions[tempLayerPositions.length - 1].layerName);
+        clickedLayer.style.background = " #E7F6FE";
+        clickedLayer.style.color = "#53A0C7";
+        clickedLayer.style.borderColor = "#53A0C7";
+        clickedLayer.style.border = "solid 1px #53A0C7";
+        clickedLayer.style.height = "auto";
+
+        var tempChildNodes = clickedLayer.childNodes;
+        for (var j = 2; j < tempChildNodes.length; j++) {
+            if (tempChildNodes[j].nodeName.toLowerCase() == 'div') {
+                tempChildNodes[j].style.opacity = 1;
+                tempChildNodes[j].style.height = 'auto';
+            }
         }
     }
 
