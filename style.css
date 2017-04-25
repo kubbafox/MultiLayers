@@ -1,4 +1,4 @@
-@import url('http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900');
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900');
 
 *, *:before, *:after {
     padding: 0;
@@ -45,6 +45,7 @@
     margin: 5px 0px;
     font-weight: 300;
     font-size: 16px;
+    transition: font-size 0.6s linear;
 }
 
 
