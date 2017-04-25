@@ -30,7 +30,7 @@
 }
 
 .evo_c_multiLayers_container section:hover,
-.evo_c_multiLayers_container:hover section:hover .evo_c_multiLayer_header{
+.evo_c_multiLayers_container section:hover .evo_c_multiLayer_header{
     border-color: #53A0C7;
     color: #53A0C7;
     transition: all 0.6s linear;
