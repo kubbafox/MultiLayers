@@ -23,7 +23,7 @@
             tempLayers[i].style.top = (i * 45).toString() + 'px';
 
             var tempChildNodes = tempLayers[i].childNodes;
-            tempChildNodes[1].style.transitionDelay = "0.8s";
+            tempChildNodes[1].style.transitionDelay = "0.6s";
             for (var j = 2; j < tempChildNodes.length; j++) {
                 if (tempChildNodes[j].nodeName.toLowerCase() == 'div') {
                     tempChildNodes[j].style.opacity = 0;
@@ -43,7 +43,8 @@
         // Setup Header
         tempChildNodes[1].style.fontWeight = "400";
         tempChildNodes[1].style.fontSize = "24px";
-        tempChildNodes[1].style.transitionDelay = "0.8s";
+        tempChildNodes[1].style.transitionDelay = "0.6s";
+
         for (var j = 2; j < tempChildNodes.length; j++) {
             if (tempChildNodes[j].nodeName.toLowerCase() == 'div') {
                 tempChildNodes[j].style.opacity = 1;
@@ -85,8 +86,22 @@
             tempLayers[i].addEventListener("click", function (e) {
                 setInitialLayerCSSPropertyValue();
                 shuffleLayers(e);
+                setCheckMark(e);
             }, false);
         }
+    }
+
+    function setCheckMark(e) {
+
+        var clickedElement = (e.target.id).replace('_header', '');
+        var clickedMark = document.getElementById(clickedElement).childNodes[1].childNodes[1];
+        clickedMark.style.opacity = "1";
+
+        var tempLayers = document.getElementsByClassName('evo_js_multiLayers_layer');
+        var theLastLayerMark = tempLayers[tempLayers.length - 1].childNodes[1].childNodes[1];
+        theLastLayerMark.style.opacity = "1";
+        theLastLayerMark.style.transitionDelay = "2s";
+
     }
 
     function shuffleLayers(e) {
@@ -97,7 +112,7 @@
         //Change the topPosition Value for Selected Layer
         for (var i = 0; i < tempLayerPositions.length; i++) {
             if (tempLayerPositions[i].layerName == clickedElement) {
-                tempLayerPositions[i].topPosition = 9999;
+                tempLayerPositions[i].topPosition = 999999;
                 break;
             }
         }
