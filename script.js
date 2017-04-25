@@ -23,6 +23,7 @@
             tempLayers[i].style.top = (i * 45).toString() + 'px';
 
             var tempChildNodes = tempLayers[i].childNodes;
+            tempChildNodes[1].style.transitionDelay = "0.8s";
             for (var j = 2; j < tempChildNodes.length; j++) {
                 if (tempChildNodes[j].nodeName.toLowerCase() == 'div') {
                     tempChildNodes[j].style.opacity = 0;
@@ -40,9 +41,9 @@
 
         var tempChildNodes = theLastLayer.childNodes;
         // Setup Header
-        tempChildNodes[1].style.fontWeight= "400";
-        tempChildNodes[1].style.fontSize= "24px";
-
+        tempChildNodes[1].style.fontWeight = "400";
+        tempChildNodes[1].style.fontSize = "24px";
+        tempChildNodes[1].style.transitionDelay = "0.8s";
         for (var j = 2; j < tempChildNodes.length; j++) {
             if (tempChildNodes[j].nodeName.toLowerCase() == 'div') {
                 tempChildNodes[j].style.opacity = 1;
@@ -172,8 +173,13 @@
 
         }, false);
     }
+    
+    // function () {
+    //
+    // }
 
     function setHeaderPositionToVertical() {
+        
 
     }
 
