@@ -87,6 +87,7 @@
         var tempLayers = document.getElementsByClassName('evo_js_multiLayers_layer');
         for (var i = 0; i < tempLayers.length; i++) {
             tempLayers[i].addEventListener("click", function (e) {
+
                 shuffleLayers(e);
                 setCheckMark(e);
             }, false);
@@ -127,7 +128,6 @@
         console.log(tempLayerPositions);
 
 
-
         setTimeout(function () {
             hideUnselectedLayerA();
         }, 200);
@@ -138,15 +138,33 @@
             hideUnselectedLayerC();
         }, 600);
         setTimeout(function () {
+            resetZIndexUnselectedLayerC();
+            resetZIndexUnselectedLayerB();
+            resetZIndexUnselectedLayerA();
             pushClickedLayer();
             highLightClickedLayer();
-        }, 800);
+        }, 1000);
 
-        function hideUnselectedLayerA() {
-            console.log('A');
 
+        function resetZIndexUnselectedLayerA() {
             var tempLayer = document.getElementById(tempLayerPositions[2].layerName);
             tempLayer.style.zIndex = 2;
+        }
+
+        function resetZIndexUnselectedLayerB() {
+            var tempLayer = document.getElementById(tempLayerPositions[1].layerName);
+            tempLayer.style.zIndex = 1;
+        }
+
+        function resetZIndexUnselectedLayerC() {
+            var tempLayer = document.getElementById(tempLayerPositions[0].layerName);
+            tempLayer.style.zIndex = 0;
+        }
+
+        function hideUnselectedLayerA() {
+
+            var tempLayer = document.getElementById(tempLayerPositions[2].layerName);
+            tempLayer.style.zIndex = 10;
             tempLayer.style.left = (2 * 25).toString() + 'px';
             tempLayer.style.top = (2 * 45).toString() + 'px';
             tempLayer.style.background = "#FDFFFC";
@@ -164,7 +182,6 @@
             for (var j = 2; j < tempChildNodes.length; j++) {
                 if (tempChildNodes[j].nodeName.toLowerCase() == 'div') {
                     tempChildNodes[j].style.opacity = 0;
-                    tempChildNodes[j].style.height = 0;
                 }
             }
         }
@@ -173,7 +190,7 @@
             console.log('B');
 
             var tempLayer = document.getElementById(tempLayerPositions[1].layerName);
-            tempLayer.style.zIndex = 1;
+            tempLayer.style.zIndex = 9;
             tempLayer.style.left = (1 * 25).toString() + 'px';
             tempLayer.style.top = (1 * 45).toString() + 'px';
             tempLayer.style.background = "#FDFFFC";
@@ -200,7 +217,7 @@
             console.log('C');
 
             var tempLayer = document.getElementById(tempLayerPositions[0].layerName);
-            tempLayer.style.zIndex = 0;
+            tempLayer.style.zIndex = 8;
             tempLayer.style.left = (0 * 25).toString() + 'px';
             tempLayer.style.top = (0 * 45).toString() + 'px';
             tempLayer.style.background = "#FDFFFC";
@@ -222,7 +239,6 @@
                 }
             }
         }
-
 
         function pushClickedLayer() {
             console.log('P');
@@ -274,7 +290,6 @@
             } else {
                 setHeaderPositionToHorizontal();
             }
-
         }, false);
     }
 
