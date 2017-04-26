@@ -87,12 +87,12 @@
         var tempLayers = document.getElementsByClassName('evo_js_multiLayers_layer');
         for (var i = 0; i < tempLayers.length; i++) {
             tempLayers[i].addEventListener("click", function (e) {
-
                 shuffleLayers(e);
                 setCheckMark(e);
             }, false);
         }
     }
+
 
     function setCheckMark(e) {
 
@@ -111,40 +111,69 @@
         var tempLayerPositions = createLayerMapping();
         var clickedElement = (e.target.id).replace('_header', '');
 
-        //Change the topPosition Value for Selected Layer
-        for (var i = 0; i < tempLayerPositions.length; i++) {
-            if (tempLayerPositions[i].layerName == clickedElement) {
-                tempLayerPositions[i].topPosition = 999999;
-                break;
+        shuffleLayersWithDelay();
+
+        function shuffleLayersWithDelay() {
+            console.log(checkClickedElementIsLastLayer());
+            if (checkClickedElementIsLastLayer() == false) {
+
+                updateSelectedLayerTopPosition();
+                sortTempLayerPositions();
+                setTimeout(function () {
+                    hideUnselectedLayerA();
+                }, 200);
+                setTimeout(function () {
+                    hideUnselectedLayerB();
+                }, 400);
+                setTimeout(function () {
+                    hideUnselectedLayerC();
+                }, 600);
+                setTimeout(function () {
+                    resetZIndexUnselectedLayerC();
+                    resetZIndexUnselectedLayerB();
+                    resetZIndexUnselectedLayerA();
+                    pushClickedLayer();
+                    highLightClickedLayer();
+                }, 1000);
             }
         }
+
+        //get Check the topPosition
+        function checkClickedElementIsLastLayer() {
+            var clickedElementTopPosition;
+            for (var i = 0; i < tempLayerPositions.length; i++) {
+                if (tempLayerPositions[i].layerName == clickedElement) {
+                    clickedElementTopPosition = tempLayerPositions[i].topPosition;
+                    break;
+                }
+            }
+
+            for (var i = 0; i < tempLayerPositions.length; i++) {
+                if (tempLayerPositions[i].topPosition > clickedElementTopPosition) {
+                    return false;
+                }
+            }
+        }
+
+
+        function updateSelectedLayerTopPosition() {
+            //Change the topPosition Value for Selected Layer
+            for (var i = 0; i < tempLayerPositions.length; i++) {
+                if (tempLayerPositions[i].layerName == clickedElement) {
+                    tempLayerPositions[i].topPosition = 999999;
+                    break;
+                }
+            }
+        }
+
         //Sort the tempLayerPositions array based on updated topPosition
-        tempLayerPositions.sort(function (a, b) {
-            if (a['topPosition'] > b['topPosition']) return 1;
-            if (a['topPosition'] < b['topPosition']) return -1;
-            return 0;
-        });
-
-        console.log(tempLayerPositions);
-
-
-        setTimeout(function () {
-            hideUnselectedLayerA();
-        }, 200);
-        setTimeout(function () {
-            hideUnselectedLayerB();
-        }, 400);
-        setTimeout(function () {
-            hideUnselectedLayerC();
-        }, 600);
-        setTimeout(function () {
-            resetZIndexUnselectedLayerC();
-            resetZIndexUnselectedLayerB();
-            resetZIndexUnselectedLayerA();
-            pushClickedLayer();
-            highLightClickedLayer();
-        }, 1000);
-
+        function sortTempLayerPositions() {
+            tempLayerPositions.sort(function (a, b) {
+                if (a['topPosition'] > b['topPosition']) return 1;
+                if (a['topPosition'] < b['topPosition']) return -1;
+                return 0;
+            });
+        }
 
         function resetZIndexUnselectedLayerA() {
             var tempLayer = document.getElementById(tempLayerPositions[2].layerName);
@@ -187,8 +216,6 @@
         }
 
         function hideUnselectedLayerB() {
-            console.log('B');
-
             var tempLayer = document.getElementById(tempLayerPositions[1].layerName);
             tempLayer.style.zIndex = 9;
             tempLayer.style.left = (1 * 25).toString() + 'px';
@@ -214,8 +241,6 @@
         }
 
         function hideUnselectedLayerC() {
-            console.log('C');
-
             var tempLayer = document.getElementById(tempLayerPositions[0].layerName);
             tempLayer.style.zIndex = 8;
             tempLayer.style.left = (0 * 25).toString() + 'px';
@@ -241,7 +266,6 @@
         }
 
         function pushClickedLayer() {
-            console.log('P');
             var tempLayer = document.getElementById(tempLayerPositions[3].layerName);
             tempLayer.style.zIndex = 3;
             tempLayer.style.left = (3 * 25).toString() + 'px';
@@ -249,12 +273,7 @@
         }
 
 
-        // Reset CCS PropertyValue & Shuffle Layers
-
-
         //Highlight the clicked layer
-
-
 
         function highLightClickedLayer() {
             var clickedLayer = document.getElementById(tempLayerPositions[tempLayerPositions.length - 1].layerName);
@@ -265,7 +284,6 @@
             clickedLayer.style.height = "auto";
 
             var tempChildNodes = clickedLayer.childNodes;
-
             // Setup Header
             tempChildNodes[1].style.fontWeight = "400";
             tempChildNodes[1].style.fontSize = "22px";
