@@ -105,7 +105,7 @@
     display: block;
     position: absolute;
     height: 500px;
-    width: 50%;
+    width: 80%;
     margin: 40px;
     border: 1px solid black;
 }
@@ -131,6 +131,11 @@
 
 
 /* Mobile Layout*/
-@media (max-width: 720px) {
+@media (max-width: 630px) {
+
+    .evo_c_multiLayers_layer {
+        width: 630px;
+    }
+
 
 }

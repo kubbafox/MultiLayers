@@ -118,7 +118,7 @@
             scrollBackToContainerTop();
             setTimeout(function () {
                 shuffleLayersWithDelay();
-            }, 1000);
+            }, 900);
         } else {
             shuffleLayersWithDelay();
         }
@@ -254,6 +254,7 @@
                 var tempLayer = document.getElementById(tempLayerPositions[i].layerName);
                 tempLayer.style.left = (i * 25).toString() + 'px';
                 tempLayer.style.top = (i * 45).toString() + 'px';
+                tempLayer.style.height = '480px';
                 tempLayer.style.opacity = "1";
                 if (i > 0)setTimeout(function () {
                     fn(--i);
@@ -415,11 +416,11 @@
         var currentScrollTopPosition = getCurrentScrollPosition();
         var containerTopPosition = getContainerTopPosition();
         var lastLayerHeight = getLastLayerHeight();
-        var adjustedVerticalHeaderTop = (400 + currentScrollTopPosition - containerTopPosition);
-        var adjustedLayerHeight = (300 + currentScrollTopPosition - containerTopPosition);
+        var adjustedVerticalHeaderTop = (350 + currentScrollTopPosition - containerTopPosition);
+        var adjustedLayerHeight = (200 + currentScrollTopPosition - containerTopPosition);
 
 
-        if (lastLayerHeight > adjustedVerticalHeaderTop) {
+        if (lastLayerHeight > adjustedVerticalHeaderTop + 100) {
             for (var i = 0; i < tempLayerPositions.length - 1; i++) {
                 var tempLayer = document.getElementById(tempLayerPositions[i].layerName);
                 tempLayer.style.height = (adjustedLayerHeight).toString() + 'px';
@@ -429,9 +430,9 @@
         } else {
             for (var i = 0; i < tempLayerPositions.length - 1; i++) {
                 var tempLayer = document.getElementById(tempLayerPositions[i].layerName);
-                tempLayer.style.height = (lastLayerHeight).toString() + 'px';
+                tempLayer.style.height = (lastLayerHeight - 250).toString() + 'px';
                 var tempChildNodes = tempLayer.childNodes;
-                tempChildNodes[1].style.top = (lastLayerHeight + 100).toString() + 'px';
+                tempChildNodes[1].style.top = (lastLayerHeight - 110).toString() + 'px';
             }
         }
     }
@@ -463,7 +464,7 @@
     function scrollBackToContainerTop() {
 
         // document.body.scrollTop = document.documentElement.scrollTop = getContainerTopPosition();
-        TweenLite.to(window, 0.8, {scrollTo:0, ease:Power2.easeOut});
+        TweenLite.to(window, 0.8, {scrollTo:0, autoKill:false, ease:Power2.easeOut});
     }
 
     function getLayerTopPosition(layerId) {
