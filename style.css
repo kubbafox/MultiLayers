@@ -28,18 +28,21 @@
     border-right: 0;
     color: #808080;
     transition-timing-function: cubic-bezier(0.950, 0.050, 0.795, 0.035);
-    transition: opacity 0.4s, left 0.4s, top 0.4s, background 0.4s, color 0.4s;
+    transition: opacity 0.2s, left 0.4s, top 0.4s, background 0.1s, color 0.4s;
 }
 
 .evo_c_multiLayers_container section:hover,
 .evo_c_multiLayers_container section:hover .evo_c_multiLayer_header{
     border-color: #53A0C7 !important;
-    color: #53A0C7;
+    color: #53A0C7 !important;
     /*transition: border-color 0.6s ease-out, color 0.6s ease-out;*/
 }
 
 .evo_c_multiLayers_container section:hover .evo_c_multiLayer_header {
     cursor: pointer;
+    /*transition-timing-function: cubic-bezier(0.950, 0.050, 0.795, 0.035);*/
+    /*transition: color 1s!important;;*/
+    /*transition-delay: 1s!important;;*/
 }
 
 .evo_c_multiLayers_container section div {
@@ -105,36 +108,16 @@
     display: block;
     position: absolute;
     height: 500px;
-    width: 80%;
+    width: 630px;
     margin: 40px;
     border: 1px solid black;
 }
-
-/* Check Mark */
-
-.icon {
-    opacity: 0;
-    position: relative;
-    float: right;
-    top:2px;
-    width: 12px;
-    height: 12px;
-    stroke-width: 1;
-    stroke: currentColor;
-    fill: currentColor;
-    transition-timing-function: cubic-bezier(0.950, 0.050, 0.795, 0.035);
-    transition: opacity 1s ;
-    transition-delay: 2s;
-}
-
-
-
 
 /* Mobile Layout*/
 @media (max-width: 630px) {
 
     .evo_c_multiLayers_layer {
-        width: 630px;
+        width: 85%;
     }
 
 

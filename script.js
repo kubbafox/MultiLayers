@@ -94,25 +94,48 @@
         for (var i = 0; i < tempLayers.length; i++) {
             tempLayers[i].addEventListener("click", function (e) {
                 shuffleLayers(e);
-                setCheckMark();
+                setCheckMark(e);
             }, false);
         }
     }
 
 
-    function setCheckMark() {
+    function setCheckMark(e) {
         var tempLayerPositions = createLayerMapping();
         sortTempLayerBasedOnTopPositions(tempLayerPositions);
 
-        var reviewedLayerMark = document.getElementById(tempLayerPositions[3].layerName).childNodes[1].childNodes[1];
-        reviewedLayerMark.style.opacity = "1";
+        var clickedElement = (e.target.id).replace('_header', '');
+        var clickedLayerPositionInArray = getClickedLayerPositionInArray();
+
+        function getClickedLayerPositionInArray() {
+            var clickedElementTopPosition;
+            for (var i = 0; i < tempLayerPositions.length; i++) {
+                if (tempLayerPositions[i].layerName == clickedElement) {
+                    clickedElementTopPosition = tempLayerPositions[i].topPosition;
+                    break;
+                }
+            }
+            var clickedLayerPositionInArray = 0;
+            for (var i = 0; i < tempLayerPositions.length; i++) {
+                if (tempLayerPositions[i].topPosition < clickedElementTopPosition) {
+                    clickedLayerPositionInArray++;
+                }
+            }
+            return clickedLayerPositionInArray;
+        }
+
+        if (clickedLayerPositionInArray != 3 ) {
+        var reviewedLayer = document.getElementById(tempLayerPositions[3].layerName);
+        var reviewedLayerTitle = document.getElementById(tempLayerPositions[3].layerName).childNodes[1];
+
+        reviewedLayer.style.borderColor = "#e3e3e3";
+        }
     }
 
     function shuffleLayers(e) {
         var tempLayerPositions = createLayerMapping();
         var clickedElement = (e.target.id).replace('_header', '');
         var clickedLayerPositionInArray = getClickedLayerPositionInArray();
-
 
         if (headerPositionIndicator == 1 && checkClickedElementIsLastLayer() == false) {
             scrollBackToContainerTop();
@@ -234,14 +257,8 @@
             tempLayerPositions[tempLayerPositions.length - 1].topPosition = 0;
         }
 
-
         //Sort the tempLayerPositions array based on updated topPosition
-
         function resetUnselectedLayersZIndex() {
-
-
-
-
             for (var i = 2; i >= 0; i--) {
                 var tempLayer = document.getElementById(tempLayerPositions[i].layerName);
                 tempLayer.style.zIndex = i;
@@ -263,14 +280,12 @@
         }
 
         function hideUnselectedLayerA() {
-
             var tempLayer = document.getElementById(tempLayerPositions[1].layerName);
             tempLayer.style.zIndex = 10;
             tempLayer.style.left = (2 * 25).toString() + 'px';
             tempLayer.style.top = (2 * 45).toString() + 'px';
             tempLayer.style.background = "#FDFFFC";
             tempLayer.style.color = "#808080";
-            tempLayer.style.borderColor = "#808080";
             tempLayer.style.borderBottom = "0";
             tempLayer.style.borderRight = "0";
             tempLayer.style.height = "480px";
@@ -295,7 +310,6 @@
             tempLayer.style.top = (3 * 45).toString() + 'px';
             tempLayer.style.background = "#FDFFFC";
             tempLayer.style.color = "#808080";
-            tempLayer.style.borderColor = "#808080";
             tempLayer.style.borderBottom = "0";
             tempLayer.style.borderRight = "0";
             tempLayer.style.height = "480px";
@@ -321,7 +335,6 @@
             tempLayer.style.top = (4 * 45).toString() + 'px';
             tempLayer.style.background = "#FDFFFC";
             tempLayer.style.color = "#808080";
-            tempLayer.style.borderColor = "#808080";
             tempLayer.style.borderBottom = "0";
             tempLayer.style.borderRight = "0";
             tempLayer.style.height = "480px";
@@ -331,10 +344,12 @@
             // Reset Header
             tempChildNodes[1].style.fontWeight = "300";
             tempChildNodes[1].style.fontSize = "16px";
+            tempChildNodes[1].style.color = "#c8c5c5";
 
             for (var j = 2; j < tempChildNodes.length; j++) {
                 if (tempChildNodes[j].nodeName.toLowerCase() == 'div') {
                     tempChildNodes[j].style.opacity = 0;
+                    tempChildNodes[j].style.color = "#c8c5c5";
                 }
             }
         }
@@ -361,11 +376,13 @@
             // Setup Header
             tempChildNodes[1].style.fontWeight = "400";
             tempChildNodes[1].style.fontSize = "22px";
+            tempChildNodes[1].style.color = "#53A0C7";
 
             for (var j = 2; j < tempChildNodes.length; j++) {
                 if (tempChildNodes[j].nodeName.toLowerCase() == 'div') {
                     tempChildNodes[j].style.opacity = 1;
                     tempChildNodes[j].style.height = 'auto';
+                    tempChildNodes[j].style.color = '#53A0C7';
                 }
             }
         }
@@ -401,10 +418,6 @@
             tempChildNodes[1].style.top = "400px";
             tempChildNodes[1].style.left = "-46%";
             tempChildNodes[1].style.whiteSpace = "nowrap";
-
-            tempChildNodes[1].childNodes[1].style.float = "none";
-            tempChildNodes[1].childNodes[1].style.width = "12px";
-            tempChildNodes[1].childNodes[1].style.height = "12px";
         }
         headerPositionIndicator = 1;
     }
@@ -448,10 +461,6 @@
                 tempChildNodes[1].style.top = "0";
                 tempChildNodes[1].style.left = "25px";
                 tempChildNodes[1].style.whiteSpace = "normal";
-
-                tempChildNodes[1].childNodes[1].style.float = "right";
-                tempChildNodes[1].childNodes[1].style.width = "15px";
-                tempChildNodes[1].childNodes[1].style.height = "15px";
             }
             headerPositionIndicator = 2;
         }
@@ -462,8 +471,6 @@
     }
 
     function scrollBackToContainerTop() {
-
-        // document.body.scrollTop = document.documentElement.scrollTop = getContainerTopPosition();
         TweenLite.to(window, 0.8, {scrollTo:0, autoKill:false, ease:Power2.easeOut});
     }
 
