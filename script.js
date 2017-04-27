@@ -463,7 +463,7 @@
     function scrollBackToContainerTop() {
 
         // document.body.scrollTop = document.documentElement.scrollTop = getContainerTopPosition();
-        TweenLite.to(window, 2, {scrollTo:0, ease:Power2.easeOut});
+        TweenLite.to(window, 0.8, {scrollTo:0, ease:Power2.easeOut});
     }
 
     function getLayerTopPosition(layerId) {
