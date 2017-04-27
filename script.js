@@ -116,7 +116,9 @@
 
         if (headerPositionIndicator == 1 && checkClickedElementIsLastLayer() == false) {
             scrollBackToContainerTop();
-            shuffleLayersWithDelay();
+            setTimeout(function () {
+                shuffleLayersWithDelay();
+            }, 1000);
         } else {
             shuffleLayersWithDelay();
         }
@@ -134,40 +136,40 @@
                     console.log("A");
                     setTimeout(function () {
                         hideUnselectedLayerC();
-                    }, 200);
+                    }, 150);
                     setTimeout(function () {
                         hideUnselectedLayerB();
-                    }, 400);
+                    }, 300);
                     setTimeout(function () {
                         hideUnselectedLayerA();
-                    }, 600);
+                    }, 450);
                     setTimeout(function () {
                         resetUnselectedLayersZIndex();
                         pushClickedLayer();
                         highLightClickedLayer();
-                    }, 1000);
+                    }, 600);
                     setTimeout(function () {
                         resetUnselectedLayersPosition();
-                    }, 1400);
+                    }, 900);
                 } else if (clickedLayerPositionInArray == 1) {
                     setTimeout(function () {
                         hideUnselectedLayerC();
-                    }, 200);
+                    }, 150);
                     setTimeout(function () {
                         hideUnselectedLayerB();
-                    }, 600);
+                    }, 300);
                     setTimeout(function () {
                         resetUnselectedLayersZIndex();
                         pushClickedLayer();
                         highLightClickedLayer();
-                    }, 1200);
+                    }, 600);
                     setTimeout(function () {
                         resetUnselectedLayersPosition();
-                    }, 1400);
+                    }, 750);
                 } else if (clickedLayerPositionInArray == 2) {
                     setTimeout(function () {
                         hideUnselectedLayerC();
-                    }, 200);
+                    }, 150);
                     setTimeout(function () {
                         resetUnselectedLayersZIndex();
                         pushClickedLayer();
@@ -175,9 +177,8 @@
                     }, 600);
                     setTimeout(function () {
                         resetUnselectedLayersPosition();
-                    }, 1000);
+                    }, 750);
                 }
-
             }
         }
 
@@ -230,13 +231,17 @@
 
         function updateLastLayerTopPosition() {
             console.log(tempLayerPositions[tempLayerPositions.length - 1]);
-            tempLayerPositions[tempLayerPositions.length - 1].topPosition = -999999;
+            tempLayerPositions[tempLayerPositions.length - 1].topPosition = 0;
         }
 
 
         //Sort the tempLayerPositions array based on updated topPosition
 
         function resetUnselectedLayersZIndex() {
+
+
+
+
             for (var i = 2; i >= 0; i--) {
                 var tempLayer = document.getElementById(tempLayerPositions[i].layerName);
                 tempLayer.style.zIndex = i;
@@ -244,12 +249,16 @@
         }
 
         function resetUnselectedLayersPosition() {
-            for (var i = 2; i >= 0; i--) {
+            (function fn(i) {
+                console.log(tempLayerPositions[i].layerName);
                 var tempLayer = document.getElementById(tempLayerPositions[i].layerName);
                 tempLayer.style.left = (i * 25).toString() + 'px';
                 tempLayer.style.top = (i * 45).toString() + 'px';
                 tempLayer.style.opacity = "1";
-            }
+                if (i > 0)setTimeout(function () {
+                    fn(--i);
+                }, 150);
+            }(2));
         }
 
         function hideUnselectedLayerA() {
@@ -452,7 +461,9 @@
     }
 
     function scrollBackToContainerTop() {
-        document.body.scrollTop = document.documentElement.scrollTop = getContainerTopPosition();
+
+        // document.body.scrollTop = document.documentElement.scrollTop = getContainerTopPosition();
+        TweenLite.to(window, 2, {scrollTo:0, ease:Power2.easeOut});
     }
 
     function getLayerTopPosition(layerId) {
