@@ -241,6 +241,7 @@
                 var tempLayer = document.getElementById(tempLayerPositions[i].layerName);
                 tempLayer.style.left = (i * 25).toString() + 'px';
                 tempLayer.style.top = (i * 45).toString() + 'px';
+                tempLayer.style.opacity = "1";
             }
         }
 
@@ -256,6 +257,7 @@
             tempLayer.style.borderBottom = "0";
             tempLayer.style.borderRight = "0";
             tempLayer.style.height = "480px";
+            tempLayer.style.opacity = "0";
 
             var tempChildNodes = tempLayer.childNodes;
             // Reset Header
@@ -280,6 +282,7 @@
             tempLayer.style.borderBottom = "0";
             tempLayer.style.borderRight = "0";
             tempLayer.style.height = "480px";
+            tempLayer.style.opacity = "0";
 
             var tempChildNodes = tempLayer.childNodes;
             // Reset Header
@@ -305,6 +308,7 @@
             tempLayer.style.borderBottom = "0";
             tempLayer.style.borderRight = "0";
             tempLayer.style.height = "480px";
+            tempLayer.style.opacity = "0";
 
             var tempChildNodes = tempLayer.childNodes;
             // Reset Header
