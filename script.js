@@ -12,7 +12,6 @@
     createClickEventListener();
     createScrollEventListener();
 
-
     function setInitialLayerCSSPropertyValue() {
         var tempLayers = document.getElementsByClassName('evo_js_multiLayers_layer');
 
@@ -124,23 +123,23 @@
 
         function shuffleLayersWithDelay() {
             if (checkClickedElementIsLastLayer() == false) {
+                sortTempLayerBasedOnTopPositions(tempLayerPositions);
+                updateLastLayerTopPosition();
                 updateSelectedLayerTopPosition();
                 sortTempLayerBasedOnTopPositions(tempLayerPositions);
-
-                console.log(clickedLayerPositionInArray);
-
+                console.log(tempLayerPositions);
 
 
                 if (clickedLayerPositionInArray == 0) {
                     console.log("A");
                     setTimeout(function () {
-                        hideUnselectedLayerA();
+                        hideUnselectedLayerC();
                     }, 200);
                     setTimeout(function () {
                         hideUnselectedLayerB();
                     }, 400);
                     setTimeout(function () {
-                        hideUnselectedLayerC();
+                        hideUnselectedLayerA();
                     }, 600);
                     setTimeout(function () {
                         resetUnselectedLayersZIndex();
@@ -152,11 +151,23 @@
                     }, 1400);
                 } else if (clickedLayerPositionInArray == 1) {
                     setTimeout(function () {
-                        hideUnselectedLayerA();
+                        hideUnselectedLayerC();
                     }, 200);
                     setTimeout(function () {
                         hideUnselectedLayerB();
-                    }, 400);
+                    }, 600);
+                    setTimeout(function () {
+                        resetUnselectedLayersZIndex();
+                        pushClickedLayer();
+                        highLightClickedLayer();
+                    }, 1200);
+                    setTimeout(function () {
+                        resetUnselectedLayersPosition();
+                    }, 1400);
+                } else if (clickedLayerPositionInArray == 2) {
+                    setTimeout(function () {
+                        hideUnselectedLayerC();
+                    }, 200);
                     setTimeout(function () {
                         resetUnselectedLayersZIndex();
                         pushClickedLayer();
@@ -165,18 +176,6 @@
                     setTimeout(function () {
                         resetUnselectedLayersPosition();
                     }, 1000);
-                } else if (clickedLayerPositionInArray == 2) {
-                    setTimeout(function () {
-                        hideUnselectedLayerA();
-                    }, 200);
-                    setTimeout(function () {
-                        resetUnselectedLayersZIndex();
-                        pushClickedLayer();
-                        highLightClickedLayer();
-                    }, 600);
-                    setTimeout(function () {
-                        resetUnselectedLayersPosition();
-                    }, 800);
                 }
 
             }
@@ -218,7 +217,9 @@
 
 
         function updateSelectedLayerTopPosition() {
-            //Change the topPosition Value for Selected Layer
+
+            // var clickedLayerPositionInArray = getClickedLayerPositionInArray();
+            // //Change the topPosition Value for Selected Layer
             for (var i = 0; i < tempLayerPositions.length; i++) {
                 if (tempLayerPositions[i].layerName == clickedElement) {
                     tempLayerPositions[i].topPosition = 999999;
@@ -226,6 +227,12 @@
                 }
             }
         }
+
+        function updateLastLayerTopPosition() {
+            console.log(tempLayerPositions[tempLayerPositions.length - 1]);
+            tempLayerPositions[tempLayerPositions.length - 1].topPosition = -999999;
+        }
+
 
         //Sort the tempLayerPositions array based on updated topPosition
 
@@ -247,10 +254,10 @@
 
         function hideUnselectedLayerA() {
 
-            var tempLayer = document.getElementById(tempLayerPositions[2].layerName);
+            var tempLayer = document.getElementById(tempLayerPositions[1].layerName);
             tempLayer.style.zIndex = 10;
-            tempLayer.style.left = (4 * 25).toString() + 'px';
-            tempLayer.style.top = (4 * 75).toString() + 'px';
+            tempLayer.style.left = (2 * 25).toString() + 'px';
+            tempLayer.style.top = (2 * 45).toString() + 'px';
             tempLayer.style.background = "#FDFFFC";
             tempLayer.style.color = "#808080";
             tempLayer.style.borderColor = "#808080";
@@ -272,10 +279,10 @@
         }
 
         function hideUnselectedLayerB() {
-            var tempLayer = document.getElementById(tempLayerPositions[1].layerName);
+            var tempLayer = document.getElementById(tempLayerPositions[2].layerName);
             tempLayer.style.zIndex = 9;
             tempLayer.style.left = (3 * 25).toString() + 'px';
-            tempLayer.style.top = (3 * 75).toString() + 'px';
+            tempLayer.style.top = (3 * 45).toString() + 'px';
             tempLayer.style.background = "#FDFFFC";
             tempLayer.style.color = "#808080";
             tempLayer.style.borderColor = "#808080";
@@ -300,8 +307,8 @@
         function hideUnselectedLayerC() {
             var tempLayer = document.getElementById(tempLayerPositions[0].layerName);
             tempLayer.style.zIndex = 8;
-            tempLayer.style.left = (2 * 25).toString() + 'px';
-            tempLayer.style.top = (2 * 75).toString() + 'px';
+            tempLayer.style.left = (4 * 25).toString() + 'px';
+            tempLayer.style.top = (4 * 45).toString() + 'px';
             tempLayer.style.background = "#FDFFFC";
             tempLayer.style.color = "#808080";
             tempLayer.style.borderColor = "#808080";
@@ -318,7 +325,6 @@
             for (var j = 2; j < tempChildNodes.length; j++) {
                 if (tempChildNodes[j].nodeName.toLowerCase() == 'div') {
                     tempChildNodes[j].style.opacity = 0;
-                    tempChildNodes[j].style.height = 0;
                 }
             }
         }
