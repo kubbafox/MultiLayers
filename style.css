@@ -39,9 +39,6 @@
 
 .evo_c_multiLayers_container section:hover .evo_c_multiLayer_header {
     cursor: pointer;
-    /*transition-timing-function: cubic-bezier(0.950, 0.050, 0.795, 0.035);*/
-    /*transition: color 1s!important;;*/
-    /*transition-delay: 1s!important;;*/
 }
 
 .evo_c_multiLayers_container section div {
@@ -59,7 +56,6 @@
     position: relative;
     margin: 5px 0px;
     font-weight: 300;
-    font-size: 16px;
 }
 
 .evo_c_multiLayers_container section .evo_c_multiLayer_title {
@@ -116,12 +112,29 @@
     .evo_c_multiLayers_layer {
         width: 80%;
     }
+
 }
 
 @media (max-width: 600px) {
 
     .evo_c_multiLayers_layer {
         width: 70%;
+    }
+
+    .evo_c_multiLayers_container section .evo_c_multiLayer_header {
+        font-size: 14px;
+        padding: 5px 25px 15px 0;
+    }
+
+    .evo_c_multiLayers_container section .evo_c_multiLayer_title {
+        font-weight: 400;
+        font-size: 14px;
+        margin: 20px 0 0 0;
+    }
+
+    .evo_c_multiLayers_container section .evo_c_multiLayer_content {
+        font-weight: 300;
+        font-size: 13px;
     }
 }
 
