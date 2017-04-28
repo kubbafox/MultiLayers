@@ -159,48 +159,48 @@
                     console.log("A");
                     setTimeout(function () {
                         hideUnselectedLayerC();
-                    }, 150);
+                    }, 100);
                     setTimeout(function () {
                         hideUnselectedLayerB();
-                    }, 300);
+                    }, 200);
                     setTimeout(function () {
                         hideUnselectedLayerA();
-                    }, 450);
+                    }, 300);
                     setTimeout(function () {
                         resetUnselectedLayersZIndex();
                         pushClickedLayer();
                         highLightClickedLayer();
-                    }, 600);
+                    }, 400);
                     setTimeout(function () {
                         resetUnselectedLayersPosition();
-                    }, 900);
+                    }, 600);
                 } else if (clickedLayerPositionInArray == 1) {
                     setTimeout(function () {
                         hideUnselectedLayerC();
-                    }, 150);
+                    }, 100);
                     setTimeout(function () {
                         hideUnselectedLayerB();
-                    }, 300);
+                    }, 200);
                     setTimeout(function () {
                         resetUnselectedLayersZIndex();
                         pushClickedLayer();
                         highLightClickedLayer();
-                    }, 600);
+                    }, 300);
                     setTimeout(function () {
                         resetUnselectedLayersPosition();
-                    }, 750);
+                    }, 500);
                 } else if (clickedLayerPositionInArray == 2) {
                     setTimeout(function () {
                         hideUnselectedLayerC();
-                    }, 150);
+                    }, 100);
                     setTimeout(function () {
                         resetUnselectedLayersZIndex();
                         pushClickedLayer();
                         highLightClickedLayer();
-                    }, 600);
+                    }, 300);
                     setTimeout(function () {
                         resetUnselectedLayersPosition();
-                    }, 750);
+                    }, 500);
                 }
             }
         }
