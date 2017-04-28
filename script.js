@@ -159,12 +159,27 @@
                     console.log("A");
                     setTimeout(function () {
                         hideUnselectedLayerC();
-                    }, 100);
-                    setTimeout(function () {
-                        hideUnselectedLayerB();
                     }, 200);
                     setTimeout(function () {
+                        hideUnselectedLayerB();
+                    }, 300);
+                    setTimeout(function () {
                         hideUnselectedLayerA();
+                    }, 400);
+                    setTimeout(function () {
+                        resetUnselectedLayersZIndex();
+                        pushClickedLayer();
+                        highLightClickedLayer();
+                    }, 500);
+                    setTimeout(function () {
+                        resetUnselectedLayersPosition();
+                    }, 700);
+                } else if (clickedLayerPositionInArray == 1) {
+                    setTimeout(function () {
+                        hideUnselectedLayerC();
+                    }, 200);
+                    setTimeout(function () {
+                        hideUnselectedLayerB();
                     }, 300);
                     setTimeout(function () {
                         resetUnselectedLayersZIndex();
@@ -174,33 +189,18 @@
                     setTimeout(function () {
                         resetUnselectedLayersPosition();
                     }, 600);
-                } else if (clickedLayerPositionInArray == 1) {
+                } else if (clickedLayerPositionInArray == 2) {
                     setTimeout(function () {
                         hideUnselectedLayerC();
-                    }, 100);
-                    setTimeout(function () {
-                        hideUnselectedLayerB();
                     }, 200);
                     setTimeout(function () {
                         resetUnselectedLayersZIndex();
                         pushClickedLayer();
                         highLightClickedLayer();
-                    }, 300);
+                    }, 400);
                     setTimeout(function () {
                         resetUnselectedLayersPosition();
-                    }, 500);
-                } else if (clickedLayerPositionInArray == 2) {
-                    setTimeout(function () {
-                        hideUnselectedLayerC();
-                    }, 100);
-                    setTimeout(function () {
-                        resetUnselectedLayersZIndex();
-                        pushClickedLayer();
-                        highLightClickedLayer();
-                    }, 300);
-                    setTimeout(function () {
-                        resetUnselectedLayersPosition();
-                    }, 500);
+                    }, 600);
                 }
             }
         }
