@@ -27,7 +27,7 @@
     border-right: 0;
     color: #808080;
     transition-timing-function: cubic-bezier(0.950, 0.050, 0.795, 0.035);
-    transition: opacity 0.6s, left 0.4s, top 0.4s, background 0.1s, color 0.4s;
+    transition: opacity 0.6s, margin 0.4s, background 0.1s, color 0.4s;
 }
 
 .evo_c_multiLayers_container section:hover,
@@ -123,7 +123,7 @@
 
     .evo_c_multiLayers_container section .evo_c_multiLayer_header {
         font-size: 14px;
-        padding: 5px 25px 15px 0;
+        /*padding: 5px 25px 15px 0;*/
     }
 
     .evo_c_multiLayers_container section .evo_c_multiLayer_title {
@@ -142,9 +142,7 @@
     .evo_c_multiLayers_layer {
         width: 60%;
     }
-
 }
-
 @media (max-width: 300px) {
     .evo_c_multiLayers_layer {
         width: 50%;

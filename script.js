@@ -18,8 +18,8 @@
         //Setup CCS Property for All Layers
         for (var i = 0; i < tempLayers.length; i++) {
             tempLayers[i].style.zIndex = i;
-            tempLayers[i].style.left = (i * 25).toString() + 'px';
-            tempLayers[i].style.top = (i * 45).toString() + 'px';
+            tempLayers[i].style.marginLeft = (i * 25).toString() + 'px';
+            tempLayers[i].style.marginTop = (i * 45).toString() + 'px';
 
             //Setup Header
             var tempChildNodes = tempLayers[i].childNodes;
@@ -269,8 +269,8 @@
             (function fn(i) {
                 console.log(tempLayerPositions[i].layerName);
                 var tempLayer = document.getElementById(tempLayerPositions[i].layerName);
-                tempLayer.style.left = (i * 25).toString() + 'px';
-                tempLayer.style.top = (i * 45).toString() + 'px';
+                tempLayer.style.marginLeft = (i * 25).toString() + 'px';
+                tempLayer.style.marginTop = (i * 45).toString() + 'px';
                 tempLayer.style.height = '480px';
                 tempLayer.style.opacity = "1";
                 if (i > 0)setTimeout(function () {
@@ -282,8 +282,8 @@
         function hideUnselectedLayerA() {
             var tempLayer = document.getElementById(tempLayerPositions[1].layerName);
             tempLayer.style.zIndex = 10;
-            tempLayer.style.left = (2 * 25).toString() + 'px';
-            tempLayer.style.top = (2 * 45).toString() + 'px';
+            tempLayer.style.marginLeft = (2 * 25).toString() + 'px';
+            tempLayer.style.marginTop = (2 * 45).toString() + 'px';
             tempLayer.style.background = "#FDFFFC";
             tempLayer.style.color = "#808080";
             tempLayer.style.borderBottom = "0";
@@ -306,8 +306,8 @@
         function hideUnselectedLayerB() {
             var tempLayer = document.getElementById(tempLayerPositions[2].layerName);
             tempLayer.style.zIndex = 9;
-            tempLayer.style.left = (3 * 25).toString() + 'px';
-            tempLayer.style.top = (3 * 45).toString() + 'px';
+            tempLayer.style.marginLeft = (3 * 25).toString() + 'px';
+            tempLayer.style.marginTop = (3 * 45).toString() + 'px';
             tempLayer.style.background = "#FDFFFC";
             tempLayer.style.color = "#808080";
             tempLayer.style.borderBottom = "0";
@@ -331,8 +331,8 @@
         function hideUnselectedLayerC() {
             var tempLayer = document.getElementById(tempLayerPositions[0].layerName);
             tempLayer.style.zIndex = 8;
-            tempLayer.style.left = (4 * 25).toString() + 'px';
-            tempLayer.style.top = (4 * 45).toString() + 'px';
+            tempLayer.style.marginLeft = (4 * 25).toString() + 'px';
+            tempLayer.style.marginTop = (4 * 45).toString() + 'px';
             tempLayer.style.background = "#FDFFFC";
             tempLayer.style.color = "#808080";
             tempLayer.style.borderBottom = "0";
@@ -357,8 +357,8 @@
         function pushClickedLayer() {
             var tempLayer = document.getElementById(tempLayerPositions[3].layerName);
             tempLayer.style.zIndex = 3;
-            tempLayer.style.left = (3 * 25).toString() + 'px';
-            tempLayer.style.top = (3 * 45).toString() + 'px';
+            tempLayer.style.marginLeft = (3 * 25).toString() + 'px';
+            tempLayer.style.marginTop = (3 * 45).toString() + 'px';
         }
 
 
@@ -415,8 +415,8 @@
 
             var tempChildNodes = tempLayer.childNodes;
             tempChildNodes[1].style.transform = "rotate(90deg)";
-            tempChildNodes[1].style.top = "400px";
-            tempChildNodes[1].style.left = "-46%";
+            tempChildNodes[1].style.marginTop = "400px";
+            tempChildNodes[1].style.marginLeft = "-50%";
             tempChildNodes[1].style.whiteSpace = "nowrap";
         }
         headerPositionIndicator = 1;
@@ -438,14 +438,14 @@
                 var tempLayer = document.getElementById(tempLayerPositions[i].layerName);
                 tempLayer.style.height = (adjustedLayerHeight).toString() + 'px';
                 var tempChildNodes = tempLayer.childNodes;
-                tempChildNodes[1].style.top = (adjustedVerticalHeaderTop).toString() + 'px';
+                tempChildNodes[1].style.marginTop = (adjustedVerticalHeaderTop).toString() + 'px';
             }
         } else {
             for (var i = 0; i < tempLayerPositions.length - 1; i++) {
                 var tempLayer = document.getElementById(tempLayerPositions[i].layerName);
                 tempLayer.style.height = (lastLayerHeight - 250).toString() + 'px';
                 var tempChildNodes = tempLayer.childNodes;
-                tempChildNodes[1].style.top = (lastLayerHeight - 110).toString() + 'px';
+                tempChildNodes[1].style.marginTop = (lastLayerHeight - 110).toString() + 'px';
             }
         }
     }
@@ -458,8 +458,8 @@
 
                 var tempChildNodes = tempLayers[i].childNodes;
                 tempChildNodes[1].style.transform = "rotate(0deg)";
-                tempChildNodes[1].style.top = "0";
-                tempChildNodes[1].style.left = "25px";
+                tempChildNodes[1].style.marginTop = "0";
+                tempChildNodes[1].style.marginLeft = "0";
                 tempChildNodes[1].style.whiteSpace = "normal";
             }
             headerPositionIndicator = 2;
