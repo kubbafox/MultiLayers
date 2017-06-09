@@ -1,7 +1,7 @@
 ## A Simple Multi Layers UI Element With Lite Swap Animation. 
  An *Evolution UI Framework* Component
  #### Live Demo
- https://kubbafox.github.io/3DLayersLite/
+ https://kubbafox.github.io/MultiLayers/
  
  #### I. A few features
  - Click & Swap Layers
@@ -27,7 +27,7 @@
     
     ...
     
-        <section class="evo_c_multiLayers_layer evo_js_multiLayers_layer" id="evo_js_multiLayers_layer_n">
+    <section class="evo_c_multiLayers_layer evo_js_multiLayers_layer" id="evo_js_multiLayers_layer_n">
      <div class="evo_c_multiLayer_header" id="evo_js_multiLayers_layer_header_n">
        Layer Header N
      </div>
